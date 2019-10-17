@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title>Contact information</title>
+    <script src="./validation2.js"></script>
+</head>
+
+<body>
+
+    <h1> Contact information</h1>
+    <form id="Contact information" >
+        <fieldset>
+            <legend>Personal Information</legend>
+            <p>
+                <label for="Email">Email: </label>
+                <input id="Email" name="Email" type="text" />
+                <img id="emailimg" src="" style="position: absolute" hidden width="25" height="25">
+            </p>
+            <p>
+                <label for="Phone">Phone: </label>
+                <input id="Phone" name="Phone" type="text" />
+                <img id="phoneimg" src="" style="position: absolute" hidden width="25" height="25">
+            </p>
+            <p>
+                <label for="Address">Address: </label>
+                <input id="Address" name="Address" type="text" />
+                <img id="Addressimg" src="" style="position: absolute" hidden width="25" height="25">
+            </p>
+            <input onCLick="valid2()" type="button" id="continue" name="continue" value="Submit" />
+            
+            
+        </fieldset>
+    </form>
+</body>
+
+</html>

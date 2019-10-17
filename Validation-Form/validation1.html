@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>Validation Form​</title>
+    <script src="./validation1.js"></script>
+</head>
+
+<body>
+    
+    <h1> Validation Form​​</h1>
+    <form id="Personal information​" >
+        <fieldset>
+            <legend> Personal Information</legend>
+            <p>
+                <label for="FirstName">First Name: </label>
+                <input id="FirstName" name="FirstName" type="text" />
+                <img id="firstNameimg" src="" style="position: absolute" hidden width="25" height="25">
+                <label id= "firstNameN"> </label>
+            </p>
+            <p>
+                <label for="LastName">Last Name: </label>
+                <input id="LastName" name="LastName" type="text" />
+                <img id="lastNameimg" src="" style="position: absolute" hidden width="25" height="25">
+            </p>
+            <p>
+            <label>Gender:  </label>
+             <select id = "Gender">
+               <option value="">Select a gender...</option>
+               <option value = "male">Male</option>
+               <option value = "female">Female</option>
+             </select>
+             <img id="genderimg" src="" style="position: absolute" hidden width="25" height="25">
+            </p>
+            <p>
+             <label>State: </label>
+             <select id = "State">
+               <option value ="">Select a state...</option>
+               <option value = "California">California</option>
+               <option value = "Florida">Florida</option>
+               <option value = "New York">New York</option>
+               <option value = "Texas">Texas</option>
+               <option value = "Hawaii">Hawaii</option>
+               <option value = "Washington">Washington</option>
+               <option value = "Colorado">Colorado</option>
+               <option value = "Virginia">Virginia</option>
+               <option value = "Iowa">Iowa</option>
+               <option value = "Arizona">Arizona</option>
+             </select>
+             <img id="stateimg" src="" style="position: absolute" hidden width="25" height="25">
+            </p>
+            
+            <input onCLick="valid1()" type="button" id="continue" name="continue" value="Continue" />
+            
+        </fieldset>
+    </form>
+</body>
+
+</html>
