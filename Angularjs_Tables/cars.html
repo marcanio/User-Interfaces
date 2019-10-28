@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Homework 4</title>
+
+</head>
+<style>
+  table,
+  td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+
+  table tbody:nth-child(1) {
+    background-color: lightgrey;
+  }
+</style>
+
+<body>
+
+  <div ng-app="myApp" ng-controller="myController">
+    <table>
+
+      <tr>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th><a href='#' ng-click="orderByfield='year'; reverseSort = !reverseSort">Year</a><span
+            ng-show="!reverseSort">(Ascending)</span><span ng-show="reverseSort">(Descending)</span></th>
+        <th>Stock</th>
+        <th>Price</th>
+        <th>Option</th>
+      </tr>
+
+      <tbody>
+        <tr ng-repeat="x in cars|orderBy:orderByfield:reverseSort">
+          <td>{{ x.manufacturer }}</td>
+          <td>{{ x.model}}</td>
+          <td>{{ x.year }}</td>
+          <td>{{ x.stock}}</td>
+          <td>{{ x.price | currency}}</td>
+          <td> <button ng-click="x.stock = x.stock +1">increment</button> </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+<script src="cars.js"></script>
+<script>
+
+  var myApp = angular.module("myApp", []);
+  myApp.controller("myController", function ($scope) {
+    $scope.cars = cars;
+
+    $scope.orderByfield = 'year';
+    $scope.reverseSort = false;
+
+  });
+
+
+</script>
+
+
+</html>
