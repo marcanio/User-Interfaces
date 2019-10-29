@@ -33,9 +33,13 @@
         <th>Price</th>
         <th>Option</th>
       </tr>
-
+      <select ng-model="manu">
+          <option value="">All</option>
+        <option ng-repeat="list in cars" value="{{list.manufacturer}}">{{list.manufacturer}}</option>
+      </select>
       <tbody>
-        <tr ng-repeat="x in cars|orderBy:orderByfield:reverseSort">
+        <tr
+          ng-repeat="x in cars|orderBy:orderByfield:reverseSort | filter:{manufacturer:manu ? manu : ''}">
           <td>{{ x.manufacturer }}</td>
           <td>{{ x.model}}</td>
           <td>{{ x.year }}</td>
@@ -44,6 +48,7 @@
           <td> <button ng-click="x.stock = x.stock +1">increment</button> </td>
         </tr>
       </tbody>
+
     </table>
 
 
@@ -56,6 +61,7 @@
   var myApp = angular.module("myApp", []);
   myApp.controller("myController", function ($scope) {
     $scope.cars = cars;
+    $scope.list = ["Toyota", "Ford"];
 
     $scope.orderByfield = 'year';
     $scope.reverseSort = false;
