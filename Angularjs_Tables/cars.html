@@ -27,19 +27,21 @@
       <tr>
         <th>Manufacturer</th>
         <th>Model</th>
+        <!--Below changes if the order of the list based on the click of 'Year'-->
         <th><a href='#' ng-click="orderByfield='year'; reverseSort = !reverseSort">Year</a><span
             ng-show="!reverseSort">(Ascending)</span><span ng-show="reverseSort">(Descending)</span></th>
         <th>Stock</th>
         <th>Price</th>
         <th>Option</th>
       </tr>
+      <!--The filter in the table checks what manufacter is selected and then displays that or displays all-->
       <select ng-model="manu">
-          <option value="">All</option>
-        <option ng-repeat="list in cars" value="{{list.manufacturer}}">{{list.manufacturer}}</option>
+        <option value="">All</option>
+        <option ng-repeat="list in cars | unique: 'manufacturer'" value="{{list.manufacturer}}">{{list.manufacturer}}
+        </option>
       </select>
       <tbody>
-        <tr
-          ng-repeat="x in cars|orderBy:orderByfield:reverseSort | filter:{manufacturer:manu ? manu : ''}">
+        <tr ng-repeat="x in cars|orderBy:orderByfield:reverseSort | filter:{manufacturer:manu ? manu : ''}">
           <td>{{ x.manufacturer }}</td>
           <td>{{ x.model}}</td>
           <td>{{ x.year }}</td>
@@ -54,11 +56,28 @@
 
   </div>
 </body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 <script src="cars.js"></script>
 <script>
 
   var myApp = angular.module("myApp", []);
+
+  myApp.filter("unique", function () {
+    return function (collection, keyname) { //Return the pairs that are not duplicates
+      var output = [], keys = [];
+
+      angular.forEach(collection, function (item) { //Check if item exsists
+        var key = item[keyname];
+
+        if (keys.indexOf(key) === -1) {  //Check if the key i already in the array
+          keys.push(key);
+          output.push(item);
+        }
+      })
+      return output;
+    };
+  });
   myApp.controller("myController", function ($scope) {
     $scope.cars = cars;
     $scope.list = ["Toyota", "Ford"];
@@ -67,6 +86,7 @@
     $scope.reverseSort = false;
 
   });
+
 
 
 </script>
